@@ -26,4 +26,10 @@ public class MovieController {
     public ResponseEntity<Optional<Movie>> getSingleMovie(@PathVariable String imdbId){
         return new ResponseEntity<Optional<Movie>>(movieService.singleMovie(imdbId), HttpStatus.OK);
     }
+
+    @GetMapping("/reviews")
+    //http://localhost:8080/api/v1/movies/reviews?imdbId=tt3915174 -->> Example
+    public List<Review> getReviewFromMovieByImdb(@RequestParam String imdbId) {
+        return movieService.getReviewsByImdbId(imdbId);
+    }
 }

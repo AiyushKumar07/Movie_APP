@@ -19,15 +19,4 @@ public class ReviewController {
     public ResponseEntity<Review> createReview(@RequestBody Map<String , String> payload){
         return new ResponseEntity<Review>(reviewService.createReview(payload.get("reviewBody") , payload.get("imdbId")), HttpStatus.CREATED);
     }
-
-    @GetMapping("/{imdbId}") // Use @PathVariable instead of @RequestParam
-    public ResponseEntity<List<Review>> getReviewsByImdbId(@PathVariable String imdbId) {
-        List<Review> reviews = reviewService.getReviewsByImdbId(imdbId);
-
-        if (reviews.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-
-        return new ResponseEntity<>(reviews, HttpStatus.OK);
-    }
 }
